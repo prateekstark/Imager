@@ -63,39 +63,13 @@ int main(){
 	layer1 = ((new convolution())->normal_convolution(image, 20));
 	layer2 = ((new Pool())->activate_maxpool(layer1));
 	layer3 = ((new convolution())->normal_convolution(layer2,50));
-    ofstream output_file("convolution_result.txt");
-    ostream_iterator<float> output_iterator(output_file, "\t");
-
-    for(int i = 0 ; i < layer3.size();i++ ){
-    	for(j=0;j<layer3.at(0).size();j++){
-    	    copy(layer3.at(i).at(j).begin(), layer3.at(i).at(j).end(), output_iterator);
-        	output_file<< '\n';
-    	}
-    	output_file<< '\n';
-    }
 	layer4 = ((new Pool())->activate_maxpool(layer3));
-	
 	layer5 = ((new convolution())->normal_convolution(layer4,500));
 	layer5 = ((new Activation())->activate_relu(layer5));
 	layer6 = ((new convolution())->normal_convolution(layer5,10));
-	
-	// cout<<layer6.<<endl;
-	// cout<<layer6[0].size()<<endl;
-	
-	cout<<layer6[0][0].size()<<endl;
-	for(i=0;i<10;i++){
-		cout<<layer6[i][0][0]<<endl;	
-	}
 	
 	for(i=0;i<10;i++){
 		final_prob.push_back(layer6.at(i).at(0).at(0));
 	}
 	((new FinalLayer())->convert_softmax(final_prob));
 }
-
-// To do :
-// Image from .png to row major form -- done
-// Readme update -- done
-// Report Latex -- done
-// API conversion -- not required
-// test data -- done
