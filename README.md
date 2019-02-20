@@ -40,6 +40,7 @@ Please make sure to update tests as appropriate.
 
 ## Main Authors:
 Prateek Garg
+
 Rushil Gupta
 
 ## License
